@@ -5,6 +5,6 @@ const app = express()
 
 app.use(express.json())
 
-app.use('/files',filesRoute)
+app.use('/files', filesRoute)
 
 module.exports = app

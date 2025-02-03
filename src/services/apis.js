@@ -1,37 +1,31 @@
 const axios = require('axios')
+const config = require('../config')
 exports.getFiles = async () => {
-    try {
-        const response = await axios.get('https://echo-serv.tbxnet.com/v1/secret/files',{
-            headers:{
-                'authorization': "Bearer aSuperSecretKey",
-            }
-        })
+  try {
+    const response = await axios.get(`${config.API_URL}files`, {
+      headers: {
+        authorization: config.API_KEY
+      }
+    })
 
-        return response.data.files || []
-    } catch (error) {
-        console.log('An error occurred while fetching files: ',error.message)
-        throw new Error('Failed to get file list ')
-        
-    }
+    return response.data.files || []
+  } catch (error) {
+    console.log('An error occurred while fetching files: ', error.message)
+    throw new Error('Failed to get file list ')
+  }
 }
 
-exports.downloadFiles= async (fileName) => {
-    try {
-        
-        const response = await axios.get(`https://echo-serv.tbxnet.com/v1/secret/file/${fileName}`,{
-            headers: {
-                'authorization': "Bearer aSuperSecretKey",
-            }
-        })
+exports.downloadFiles = async (fileName) => {
+  try {
+    const response = await axios.get(`${config.API_URL}file/${fileName}`, {
+      headers: {
+        authorization: config.API_KEY
+      }
+    })
 
-        return response.data
-        
-      
-        
-    } catch (error) {
-        console.log('An error occurred while downloading the file: ',error)
-        throw new Error('An error occurred while downloading the file')
-
-        
-    }
+    return response.data
+  } catch (error) {
+    console.log(`An error occurred while downloading the file ${fileName}:`, error.message)
+    return null
+  }
 }
