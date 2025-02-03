@@ -4,16 +4,19 @@
   "description": "API backend that receives CSV files, processes and transforms the data",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha src/tests/files.test.js",
+    "start": "node src/index.js"
   },
   "author": "Alan Arevalo",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.7.9",
+    "cors": "^2.8.5",
     "express": "^4.21.2"
   },
   "devDependencies": {
-    "chai": "^5.1.2",
+    "chai": "^4.5.0",
+    "chai-http": "^4.4.0",
     "mocha": "^11.1.0",
     "standard": "^17.1.2"
   }

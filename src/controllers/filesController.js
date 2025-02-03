@@ -29,3 +29,26 @@ exports.getFilesData = async (req, res) => {
     })
   }
 }
+
+
+exports.getListFiles = async(req,res) => {
+    try {
+
+        const filesList = await apiServies.getFiles()
+
+        res.status(200).json({
+            status: 'success',
+            data: filesList
+          })
+
+        
+    } catch (error) {
+        console.log('An error ocurred while fetching files: ', error.message)
+        res.status(500).json({
+          status: 'error',
+          message: 'Failed to get file list'
+        })
+        
+    }
+
+}
